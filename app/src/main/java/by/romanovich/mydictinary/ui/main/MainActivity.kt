@@ -8,7 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.romanovich.designationOfWords.utils.isOnline
+import by.romanovich.utils.isOnline
 import by.romanovich.mydictinary.R
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
@@ -35,9 +35,10 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 startActivity(
                     DescriptionActivity.getIntent(
                         this@MainActivity,
-                        data.text!!,
-                        convertMeaningsToString(data.meanings!!),
-                        data.meanings[0].imageUrl)
+                        data.text !!,
+                        convertMeaningsToString(data.meanings !!),
+                        data.meanings[0].imageUrl
+                    )
                 )
             }
         }
@@ -47,6 +48,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         menuInflater.inflate(R.menu.hystory_menu_bottom_navigation_view, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.bottom_view_history -> {

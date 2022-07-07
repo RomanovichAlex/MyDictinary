@@ -1,4 +1,4 @@
-package by.romanovich.designationOfWords.viewModel
+package by.romanovich.mydictinary.ui.viewModel
 
 
 // Ещё выше стоит интерактор. Здесь уже чистая бизнес-логика

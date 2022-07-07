@@ -1,7 +1,7 @@
 package by.romanovich.mydictinary.ui.main
 
 import androidx.lifecycle.LiveData
-import by.romanovich.designationOfWords.viewModel.BaseViewModel
+import by.romanovich.mydictinary.ui.viewModel.BaseViewModel
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.domain.utils.parseOnlineSearchResults
 import kotlinx.coroutines.Dispatchers

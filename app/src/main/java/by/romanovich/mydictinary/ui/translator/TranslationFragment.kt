@@ -1,16 +1,12 @@
 package by.romanovich.mydictinary.ui.translator
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-
 import android.view.ViewGroup
 import by.romanovich.mydictinary.databinding.FragmentTranslationBinding
-import by.romanovich.mydictinary.ui.history.HistoryActivity
-
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class TranslationFragment : BottomSheetDialogFragment() {

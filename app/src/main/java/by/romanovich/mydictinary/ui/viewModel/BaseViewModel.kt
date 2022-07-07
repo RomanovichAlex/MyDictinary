@@ -1,4 +1,4 @@
-package by.romanovich.designationOfWords.viewModel
+package by.romanovich.mydictinary.ui.viewModel
 
 
 import androidx.lifecycle.MutableLiveData

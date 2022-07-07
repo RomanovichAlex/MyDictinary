@@ -1,6 +1,5 @@
 package by.romanovich.mydictinary.domain.utils
 
-import android.webkit.WebChromeClient.FileChooserParams.parseResult
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
 import by.romanovich.mydictinary.data.Meanings
@@ -51,10 +50,10 @@ private fun getSuccessResultData(
 }
 
 private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<DataModel>) {
-    if (!dataModel.text.isNullOrBlank() && !dataModel.meanings.isNullOrEmpty()) {
+    if (! dataModel.text.isNullOrBlank() && ! dataModel.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
         for (meaning in dataModel.meanings) {
-            if (meaning.translation != null && !meaning.translation.translation.isNullOrBlank()) {
+            if (meaning.translation != null && ! meaning.translation.translation.isNullOrBlank()) {
                 newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
             }
         }
@@ -66,7 +65,7 @@ private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<Dat
 
 fun mapHistoryEntityToSearchResult(list: List<HistoryEntity>): List<DataModel> {
     val searchResult = ArrayList<DataModel>()
-    if (!list.isNullOrEmpty()) {
+    if (! list.isNullOrEmpty()) {
         for (entity in list) {
             searchResult.add(DataModel(entity.word, null))
         }
@@ -81,7 +80,7 @@ fun convertDataModelSuccessToEntity(appState: AppState): HistoryEntity? {
             if (searchResult.isNullOrEmpty() || searchResult[0].text.isNullOrEmpty()) {
                 null
             } else {
-                HistoryEntity(searchResult[0].text!!, null)
+                HistoryEntity(searchResult[0].text !!, null)
             }
         }
         else -> null

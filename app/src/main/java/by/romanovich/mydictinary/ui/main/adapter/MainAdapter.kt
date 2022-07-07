@@ -44,7 +44,7 @@ class MainAdapter(
                 itemView.findViewById<TextView>(R.id.description_textview_recycler_item).text =
                     data.meanings?.get(0)?.translation?.translation
 
-                convertMeaningsToString(data.meanings!!)
+                convertMeaningsToString(data.meanings !!)
 
 
                 itemView.setOnClickListener { openInNewWindow(data) }

@@ -32,11 +32,11 @@
             android:id="@+id/search_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/text_authentication_editText"
-            android:textSize="@dimen/size_text"
-            android:textStyle="normal"
             android:autofillHints=""
-            android:inputType="" />
+            android:hint="@string/text_authentication_editText"
+            android:inputType=""
+            android:textSize="@dimen/size_text"
+            android:textStyle="normal" />
 
 
         <ImageView
@@ -53,8 +53,6 @@
     </FrameLayout>
 
 
-
-
     <Button
         android:id="@+id/search_button_textview"
         android:layout_width="wrap_content"
@@ -62,8 +60,7 @@
         android:layout_gravity="center"
         android:text="@string/text_button_activity_main"
         android:textSize="@dimen/size_text"
-        android:textStyle="normal"
-       />
+        android:textStyle="normal" />
 
     <Space
         android:layout_width="match_parent"

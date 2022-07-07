@@ -1,6 +1,11 @@
 package by.romanovich.mydictinary.data.api
 
-import by.romanovich.mydictinary.data.utils.*
+import by.romanovich.mydictinary.data.utils.AVERAGE_STATUS_CODE
+import by.romanovich.mydictinary.data.utils.CLIENT_ERROR
+import by.romanovich.mydictinary.data.utils.INFO
+import by.romanovich.mydictinary.data.utils.REDIRECTION
+import by.romanovich.mydictinary.data.utils.SERVER_ERROR
+import by.romanovich.mydictinary.data.utils.SUCCESS
 import okhttp3.Interceptor
 import okhttp3.Response
 

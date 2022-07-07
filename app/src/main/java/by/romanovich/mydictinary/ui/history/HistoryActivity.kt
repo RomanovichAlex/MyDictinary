@@ -2,11 +2,11 @@ package by.romanovich.mydictinary.ui.history
 
 import android.os.Bundle
 import android.widget.Toast
-import by.romanovich.designationOfWords.utils.isOnline
+import by.romanovich.utils.isOnline
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
-import by.romanovich.mydictinary.databinding.ActivityHistoryBinding
 import by.romanovich.mydictinary.ui.base.BaseActivity
+import by.romanovich.mydictinary.databinding.ActivityHistoryBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

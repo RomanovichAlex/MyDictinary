@@ -1,4 +1,4 @@
-package by.romanovich.mydictinary.domain.utils
+package by.romanovich.utils
 
 import android.content.Context
 import android.util.AttributeSet

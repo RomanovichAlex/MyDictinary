@@ -1,6 +1,6 @@
 package by.romanovich.mydictinary.ui.history
 
-import by.romanovich.designationOfWords.viewModel.Interactor
+import by.romanovich.mydictinary.ui.viewModel.Interactor
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
 import by.romanovich.mydictinary.domain.repository.Repository

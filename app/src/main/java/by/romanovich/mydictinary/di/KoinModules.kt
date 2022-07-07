@@ -13,15 +13,19 @@ import by.romanovich.mydictinary.ui.history.HistoryInteractor
 import by.romanovich.mydictinary.ui.history.HistoryViewModel
 import by.romanovich.mydictinary.ui.main.MainInteractor
 import by.romanovich.mydictinary.ui.main.MainViewModel
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val application = module {
-    single { Room.databaseBuilder(get(), HistoryDataBase::class.java,
-        "HistoryDB").build() }
+    single {
+        Room.databaseBuilder(
+            get(), HistoryDataBase::class.java,
+            "HistoryDB"
+        ).build()
+    }
     single { get<HistoryDataBase>().historyDao() }
     single<Repository<List<DataModel>>> {
-        RepositoryImpl(RetrofitImplementation()) }
+        RepositoryImpl(RetrofitImplementation())
+    }
     single<RepositoryLocal<List<DataModel>>> {
         RepositoryLocalImpl(RoomDataBaseImpl(get()))
     }

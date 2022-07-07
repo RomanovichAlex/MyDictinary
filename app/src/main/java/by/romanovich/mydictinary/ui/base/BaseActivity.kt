@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import by.romanovich.designationOfWords.utils.isOnline
-import by.romanovich.designationOfWords.viewModel.BaseViewModel
-import by.romanovich.designationOfWords.viewModel.Interactor
+import by.romanovich.utils.isOnline
+import by.romanovich.mydictinary.ui.viewModel.BaseViewModel
+import by.romanovich.mydictinary.ui.viewModel.Interactor
 import by.romanovich.mydictinary.data.AppState
-import by.romanovich.mydictinary.data.DataModel
 
 
 abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity() {
