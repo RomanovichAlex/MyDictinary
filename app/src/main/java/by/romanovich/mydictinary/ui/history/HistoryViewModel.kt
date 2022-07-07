@@ -1,9 +1,9 @@
 package by.romanovich.mydictinary.ui.history
 
 import androidx.lifecycle.LiveData
-import by.romanovich.mydictinary.ui.viewModel.BaseViewModel
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.domain.utils.parseLocalSearchResults
+import by.romanovich.mydictinary.ui.viewModel.BaseViewModel
 import kotlinx.coroutines.launch
 
 

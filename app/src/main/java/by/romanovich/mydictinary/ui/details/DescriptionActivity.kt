@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import by.romanovich.mydictinary.R
-import by.romanovich.utils.isOnline
 import by.romanovich.mydictinary.databinding.ActivityDescriptionBinding
+import by.romanovich.utils.isOnline
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -80,8 +80,6 @@ class DescriptionActivity : AppCompatActivity() {
                 }
             })
     }
-
-
 
 
     companion object {

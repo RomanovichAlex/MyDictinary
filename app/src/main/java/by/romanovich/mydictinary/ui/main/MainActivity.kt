@@ -8,7 +8,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.romanovich.utils.isOnline
 import by.romanovich.mydictinary.R
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
@@ -19,6 +18,7 @@ import by.romanovich.mydictinary.ui.details.DescriptionActivity
 import by.romanovich.mydictinary.ui.history.HistoryActivity
 import by.romanovich.mydictinary.ui.main.adapter.MainAdapter
 import by.romanovich.mydictinary.ui.translator.TranslationFragment
+import by.romanovich.utils.isOnline
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
