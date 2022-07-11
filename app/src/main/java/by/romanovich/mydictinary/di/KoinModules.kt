@@ -15,6 +15,7 @@ import by.romanovich.mydictinary.ui.main.MainInteractor
 import by.romanovich.mydictinary.ui.main.MainViewModel
 import org.koin.dsl.module
 
+
 val application = module {
     single {
         Room.databaseBuilder(
@@ -38,4 +39,3 @@ val historyScreen = module {
     factory { HistoryViewModel(get()) }
     factory { HistoryInteractor(get(), get()) }
 }
-

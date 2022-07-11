@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.romanovich.utils.isOnline
+import androidx.recyclerview.widget.RecyclerView
 import by.romanovich.mydictinary.R
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
@@ -19,6 +20,9 @@ import by.romanovich.mydictinary.ui.details.DescriptionActivity
 import by.romanovich.mydictinary.ui.history.HistoryActivity
 import by.romanovich.mydictinary.ui.main.adapter.MainAdapter
 import by.romanovich.mydictinary.ui.translator.TranslationFragment
+import by.romanovich.utils.isOnline
+import by.romanovich.utils.viewById
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -27,6 +31,37 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     override lateinit var model: MainViewModel
     private lateinit var binding: ActivityMainBinding
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+
+    private val mainActivityRecyclerview by viewById<RecyclerView>(R.id.main_activity_recyclerview)
+    private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
+
+
+    private val fabClickListener: View.OnClickListener =
+        View.OnClickListener {
+            val searchDialogFragment = TranslationFragment.newInstance()
+            searchDialogFragment.setOnSearchClickListener(object :
+                TranslationFragment.OnSearchClickListener {
+                override fun onClick(searchWord: String) {
+                    isNetworkAvailable = isOnline(applicationContext)
+                    if (isNetworkAvailable) {
+                        model.getData(searchWord, isNetworkAvailable)
+                    } else {
+                        Toast.makeText(
+                            this@MainActivity, getString(R.string.device_is_offline),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            })
+            searchDialogFragment.show(
+                supportFragmentManager,
+                BOTTOM_SHEET_FRAGMENT_DIALOG_TAG
+            )
+
+            binding.mainActivityRecyclerview.layoutManager =
+                LinearLayoutManager(applicationContext)
+            binding.mainActivityRecyclerview.adapter = adapter
+        }
 
 
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
@@ -131,15 +166,19 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         if (binding.mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException("The ViewModel should be initialised first")
         }
-// Теперь ViewModel инициализируется через функцию by viewModel()
-// Это функция, предоставляемая Koin из коробки через зависимость
-// import org.koin.androidx.viewmodel.ext.android.viewModel
+
         val viewModel: MainViewModel by viewModel()
         model = viewModel
         model.subscribe().observe(this@MainActivity) { renderData(it) }
     }
 
     private fun initViews() {
+        searchFAB.setOnClickListener(fabClickListener)
+        mainActivityRecyclerview.adapter = adapter
+    }
+
+
+    /*private fun initViews() {
         binding.searchFab.setOnClickListener {
             val searchDialogFragment = TranslationFragment.newInstance()
             searchDialogFragment.setOnSearchClickListener(object :
@@ -164,7 +203,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         binding.mainActivityRecyclerview.layoutManager =
             LinearLayoutManager(applicationContext)
         binding.mainActivityRecyclerview.adapter = adapter
-    }
+    }*/
 
     companion object {
         private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =

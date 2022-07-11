@@ -1,10 +1,10 @@
 package by.romanovich.mydictinary.ui.main
 
-import by.romanovich.mydictinary.ui.viewModel.Interactor
 import by.romanovich.mydictinary.data.AppState
 import by.romanovich.mydictinary.data.DataModel
 import by.romanovich.mydictinary.domain.repository.Repository
 import by.romanovich.mydictinary.domain.repository.RepositoryLocal
+import by.romanovich.mydictinary.ui.viewModel.Interactor
 
 
 class MainInteractor(
