@@ -13,12 +13,16 @@ android {
         versionName Releases.version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility Config.java_version
@@ -39,9 +43,10 @@ dependencies {
     implementation Kotlin.coroutines_core
     implementation Kotlin.coroutines_android
 
+
+    //Koin for Android
     implementation Koin.koin_android
-    implementation Koin.koin_core
-    implementation Koin.koin_android_compat
+//    implementation Koin.koin_view_model
 
 
     //Glide
@@ -85,4 +90,3 @@ dependencies {
     implementation Picasso.picasso
 
 }
-

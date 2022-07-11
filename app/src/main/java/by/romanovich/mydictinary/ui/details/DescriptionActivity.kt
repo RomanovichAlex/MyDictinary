@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import by.romanovich.mydictinary.R
 import by.romanovich.mydictinary.databinding.ActivityDescriptionBinding
-import by.romanovich.utils.isOnline
+import by.romanovich.utils.network.OnlineLiveData
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -53,12 +54,24 @@ class DescriptionActivity : AppCompatActivity() {
     }
 
     private fun startLoadingOrShowError() {
-        if (isOnline(applicationContext)) {
-            setData()
-        } else {
-            stopRefreshAnimationIfNeeded()
-        }
+        OnlineLiveData(this).observe(
+            this@DescriptionActivity,
+            Observer<Boolean> {
+                if (it) {
+                    setData()
+                } else {
+                    stopRefreshAnimationIfNeeded()
+                }
+            })
     }
+
+    /* private fun startLoadingOrShowError() {
+         if (isOnline(applicationContext)) {
+             setData()
+         } else {
+             stopRefreshAnimationIfNeeded()
+         }
+     }*/
 
     private fun stopRefreshAnimationIfNeeded() {
         if (binding.descriptionScreenSwipeRefreshLayout.isRefreshing) {
