@@ -46,7 +46,7 @@ dependencies {
 
     //Koin for Android
     implementation Koin.koin_android
-//    implementation Koin.koin_view_model
+   // implementation Koin.koin_view_model
 
 
     //Glide

@@ -2,9 +2,9 @@ import org.gradle.api.JavaVersion
 
 object Config {
     const val application_id = "by.romanovich.mydictinary"
-    const val compile_sdk = 32
-    const val min_sdk = 26
-    const val target_sdk = 32
+    const val compile_sdk = 31
+    const val min_sdk = 21
+    const val target_sdk = 31
     val java_version = JavaVersion.VERSION_1_8
 }
 
@@ -26,7 +26,7 @@ object Modules {
 
 object Versions {
     //Design
-    const val appcompat = "1.0.2"
+    const val appcompat = "1.1.0-rc01"
     const val material = "1.6.0"
 
     //Kotlin
@@ -42,10 +42,9 @@ object Versions {
     const val adapterCoroutines = "0.9.2"
 
     //Koin
-//    const val koinAndroid = "2.1.6"
-//    const val koinViewModel = "2.1.6"
+    //const val koinAndroid = "2.1.6"
+    const val koinViewModel = "2.1.6"
     const val koinAndroid = "3.1.2"
-    const val koinViewModel = "3.1.2"
     const val koinAndroidCompat = "3.1.2"
     const val koinCore = "3.1.2"
 
