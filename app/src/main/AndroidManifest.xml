@@ -32,7 +32,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="by.romanovich.mydictinary.ui.details.DescriptionActivity"
-            android:exported="false" />
+             />
     </application>
 
 </manifest>

@@ -1,13 +1,20 @@
 package by.romanovich.mydictinary.ui.main
 
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewTreeObserver
+import android.view.animation.AnticipateInterpolator
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.romanovich.mydictinary.R
@@ -34,6 +41,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private val mainActivityRecyclerview by viewById<RecyclerView>(R.id.main_activity_recyclerview)
     private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
+
 
 
     private val fabClickListener: View.OnClickListener =
@@ -101,8 +109,56 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
         iniViewModel()
         initViews()
-
+        setDefaultSplashScreen()
     }
+
+
+    private fun setDefaultSplashScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            setSplashScreenHideAnimation()
+        }
+        setSplashScreenDuration()
+    }
+
+
+    @RequiresApi(31)
+    private fun setSplashScreenHideAnimation() {
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+            val slideLeft = ObjectAnimator.ofFloat(
+                splashScreenView,
+                View.TRANSLATION_X,
+                0f,
+                -splashScreenView.height.toFloat()
+            )
+            slideLeft.interpolator = AnticipateInterpolator()
+            slideLeft.duration = SLIDE_LEFT_DURATION.toLong()
+            slideLeft.doOnEnd { splashScreenView.remove() }
+            slideLeft.start()
+        }
+    }
+    private fun setSplashScreenDuration() {
+        var isHideSplashScreen = false
+        object : CountDownTimer(COUNTDOWN_DURATION, COUNTDOWN_INTERVAL) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                isHideSplashScreen = true
+            }
+        }.start()
+        val content: View = findViewById(android.R.id.content)
+        content.viewTreeObserver.addOnPreDrawListener(
+            object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    return if (isHideSplashScreen) {
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    } else {
+                        false
+                    }
+                }
+            }
+        )
+    }
+
 
 
     private fun showErrorScreen(error: String?) {
@@ -208,6 +264,10 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     companion object {
         private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
             "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
+        private const val SLIDE_LEFT_DURATION = 2000
+        private const val COUNTDOWN_DURATION = 2000L
+        private const val COUNTDOWN_INTERVAL = 1000L
+
     }
 
 
