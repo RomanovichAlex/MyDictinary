@@ -30,9 +30,7 @@
         <activity
             android:name="by.romanovich.mydictinary.ui.history.HistoryActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="by.romanovich.mydictinary.ui.details.DescriptionActivity"
-             />
+        <activity android:name="by.romanovich.mydictinary.ui.details.DescriptionActivity" />
     </application>
 
 </manifest>

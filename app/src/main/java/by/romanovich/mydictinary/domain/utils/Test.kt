@@ -16,7 +16,7 @@ fun isValidSearchingWord(searchingWord: CharSequence?): Boolean {
 }
 
 fun isCorrectSearchingWord(searchingWord: CharSequence?): Boolean {
-    return SEARCHING_WORD_PATTERN.matcher(searchingWord).matches()
+    return SEARCHING_WORD_PATTERN.matcher(searchingWord.toString()).matches()
 }
 
 fun isNotNullSearchingWord(searchingWord: CharSequence?): Boolean {

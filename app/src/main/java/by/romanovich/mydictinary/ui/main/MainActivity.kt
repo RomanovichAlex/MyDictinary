@@ -43,7 +43,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
 
 
-
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
             val searchDialogFragment = TranslationFragment.newInstance()
@@ -128,7 +127,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 splashScreenView,
                 View.TRANSLATION_X,
                 0f,
-                -splashScreenView.height.toFloat()
+                - splashScreenView.height.toFloat()
             )
             slideLeft.interpolator = AnticipateInterpolator()
             slideLeft.duration = SLIDE_LEFT_DURATION.toLong()
@@ -136,6 +135,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
             slideLeft.start()
         }
     }
+
     private fun setSplashScreenDuration() {
         var isHideSplashScreen = false
         object : CountDownTimer(COUNTDOWN_DURATION, COUNTDOWN_INTERVAL) {
@@ -158,7 +158,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
             }
         )
     }
-
 
 
     private fun showErrorScreen(error: String?) {

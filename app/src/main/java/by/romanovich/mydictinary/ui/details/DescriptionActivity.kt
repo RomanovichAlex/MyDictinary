@@ -91,8 +91,10 @@ class DescriptionActivity : AppCompatActivity() {
                 onStart = {},
                 onSuccess = { result ->
                     imageView.setImageDrawable(result)
-                    val blurEffect = RenderEffect.createBlurEffect(15f, 0f,
-                        Shader.TileMode.MIRROR)
+                    val blurEffect = RenderEffect.createBlurEffect(
+                        15f, 0f,
+                        Shader.TileMode.MIRROR
+                    )
                     imageView.setRenderEffect(blurEffect)
 //binding.root.setRenderEffect(blurEffect)
                 },
@@ -105,21 +107,21 @@ class DescriptionActivity : AppCompatActivity() {
     }
 
 
-   /* @RequiresApi(31)
-    private fun usePicassoToLoadPhoto(imageView: ImageView, imageLink: String) {
-        Picasso.get().load("https:$imageLink")
-            .placeholder(R.drawable.ic_no_photo_vector).fit().centerCrop()
-            .into(imageView, object : Callback {
-                override fun onSuccess() {
-                    stopRefreshAnimationIfNeeded()
-                }
+    /* @RequiresApi(31)
+     private fun usePicassoToLoadPhoto(imageView: ImageView, imageLink: String) {
+         Picasso.get().load("https:$imageLink")
+             .placeholder(R.drawable.ic_no_photo_vector).fit().centerCrop()
+             .into(imageView, object : Callback {
+                 override fun onSuccess() {
+                     stopRefreshAnimationIfNeeded()
+                 }
 
-                override fun onError(e: Exception?) {
-                    stopRefreshAnimationIfNeeded()
-                    imageView.setImageResource(R.drawable.ic_load_error_vector)
-                }
-            })
-    }*/
+                 override fun onError(e: Exception?) {
+                     stopRefreshAnimationIfNeeded()
+                     imageView.setImageResource(R.drawable.ic_load_error_vector)
+                 }
+             })
+     }*/
 
 
     companion object {

@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import by.romanovich.mydictinary.databinding.FragmentTranslationBinding
 import by.romanovich.mydictinary.domain.utils.isValidSearchingWord
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,13 +17,12 @@ class TranslationFragment : BottomSheetDialogFragment() {
     private var onSearchClickListener: OnSearchClickListener? = null
 
 
-
     private val textWatcher = object : TextWatcher {
         override fun onTextChanged(
             s: CharSequence, start: Int, before: Int, count:
             Int
         ) {
-            val searchWord = binding.searchEditText.text.toString()
+            val searchWord = binding.searchEditText.text
             if (isValidSearchingWord(searchWord)) {
                 binding.searchButtonTextview.isEnabled = true
                 binding.clearTextImageview.visibility = View.VISIBLE
@@ -70,10 +68,6 @@ class TranslationFragment : BottomSheetDialogFragment() {
 
         addOnClearClickListener()
     }
-
-
-
-
 
 
     override fun onDestroyView() {
