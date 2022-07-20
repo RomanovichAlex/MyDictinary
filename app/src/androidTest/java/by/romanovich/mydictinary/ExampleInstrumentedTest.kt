@@ -1,5 +1,4 @@
-package by.romanovich.utils
-
+package by.romanovich.mydictinary
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -18,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("by.romanovich.utils.test", appContext.packageName)
+        assertEquals("by.romanovich.mydictinary", appContext.packageName)
     }
 }

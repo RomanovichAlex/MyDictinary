@@ -2,23 +2,33 @@ package by.romanovich.mydictinary.ui.details
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import by.romanovich.mydictinary.R
-import by.romanovich.utils.isOnline
 import by.romanovich.mydictinary.databinding.ActivityDescriptionBinding
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
+import by.romanovich.utils.network.OnlineLiveData
+import coil.ImageLoader
+import coil.request.LoadRequest
 
 class DescriptionActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityDescriptionBinding
+
+
+    @RequiresApi(31)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setActionbarHomeButtonAsUp()
+
         binding.descriptionScreenSwipeRefreshLayout.setOnRefreshListener {
             startLoadingOrShowError()
         }
@@ -40,6 +50,7 @@ class DescriptionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    @RequiresApi(31)
     private fun setData() {
         val bundle = intent.extras
         binding.descriptionHeader.text = bundle?.getString(WORD_EXTRA)
@@ -48,17 +59,23 @@ class DescriptionActivity : AppCompatActivity() {
         if (imageLink.isNullOrBlank()) {
             stopRefreshAnimationIfNeeded()
         } else {
-            usePicassoToLoadPhoto(binding.descriptionImageview, imageLink)
+            useCoilToLoadPhoto(binding.descriptionImageview, imageLink)
         }
     }
 
+    @RequiresApi(31)
     private fun startLoadingOrShowError() {
-        if (isOnline(applicationContext)) {
-            setData()
-        } else {
-            stopRefreshAnimationIfNeeded()
-        }
+        OnlineLiveData(this).observe(
+            this@DescriptionActivity,
+            Observer<Boolean> {
+                if (it) {
+                    setData()
+                } else {
+                    stopRefreshAnimationIfNeeded()
+                }
+            })
     }
+
 
     private fun stopRefreshAnimationIfNeeded() {
         if (binding.descriptionScreenSwipeRefreshLayout.isRefreshing) {
@@ -66,22 +83,45 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
-    private fun usePicassoToLoadPhoto(imageView: ImageView, imageLink: String) {
-        Picasso.get().load("https:$imageLink")
-            .placeholder(R.drawable.ic_no_photo_vector).fit().centerCrop()
-            .into(imageView, object : Callback {
-                override fun onSuccess() {
-                    stopRefreshAnimationIfNeeded()
-                }
-
-                override fun onError(e: Exception?) {
-                    stopRefreshAnimationIfNeeded()
+    @RequiresApi(31)
+    private fun useCoilToLoadPhoto(imageView: ImageView, imageLink: String) {
+        val request = LoadRequest.Builder(this)
+            .data("https:$imageLink")
+            .target(
+                onStart = {},
+                onSuccess = { result ->
+                    imageView.setImageDrawable(result)
+                    val blurEffect = RenderEffect.createBlurEffect(
+                        15f, 0f,
+                        Shader.TileMode.MIRROR
+                    )
+                    imageView.setRenderEffect(blurEffect)
+//binding.root.setRenderEffect(blurEffect)
+                },
+                onError = {
                     imageView.setImageResource(R.drawable.ic_load_error_vector)
                 }
-            })
+            )
+            .build()
+        ImageLoader(this).execute(request)
     }
 
 
+    /* @RequiresApi(31)
+     private fun usePicassoToLoadPhoto(imageView: ImageView, imageLink: String) {
+         Picasso.get().load("https:$imageLink")
+             .placeholder(R.drawable.ic_no_photo_vector).fit().centerCrop()
+             .into(imageView, object : Callback {
+                 override fun onSuccess() {
+                     stopRefreshAnimationIfNeeded()
+                 }
+
+                 override fun onError(e: Exception?) {
+                     stopRefreshAnimationIfNeeded()
+                     imageView.setImageResource(R.drawable.ic_load_error_vector)
+                 }
+             })
+     }*/
 
 
     companion object {

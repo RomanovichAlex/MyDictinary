@@ -1,4 +1,4 @@
-package by.romanovich.utils
+package by.romanovich.mydictinary
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

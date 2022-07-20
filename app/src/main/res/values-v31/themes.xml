@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MyDictinary" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowSplashScreenBackground">@color/color_error</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_android</item>
+        <item
+
+            name="android:windowSplashScreenIconBackgroundColor">@color/color_gray
+        </item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_apple</item>
+    </style>
+</resources>
