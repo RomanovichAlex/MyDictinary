@@ -69,6 +69,7 @@ dependencies {
     androidTestImplementation TestImpl.runner
     androidTestImplementation TestImpl.espresso
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
 
 
     //Rx-Java
